@@ -1,0 +1,17 @@
+template_dir: ./template
+output: ./output
+
+global:
+  template_values_path: ./config/template_values.json
+  days: 30
+  resolution_seconds: 15
+  endtime_unix: 1698048047
+
+template_without_unix:
+  ## device: 
+  - name: DEVICE_A
+  - name: DEVICE_B
+
+template_with_unix:
+  - name: VDEVICE_A
+
