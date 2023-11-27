@@ -11,9 +11,6 @@ const (
 	binaryName = "prometheus_data_generator"
 )
 
-type Config struct {
-}
-
 func getWd() string {
 	wd, _ := os.Getwd()
 	return wd
