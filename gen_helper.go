@@ -2,11 +2,9 @@ package main
 
 import (
 	"bytes"
-	"html/template"
 	"math/rand"
 	"path"
-
-	"github.com/Masterminds/sprig/v3"
+	"text/template"
 )
 
 type GenHelper_WithoutUnix struct {
@@ -65,14 +63,14 @@ func (helper GenHelper_WithoutUnix) Exec(templateFilePath, outputDir string, dat
 	resultBytes := buf.Bytes()
 	resultBytes = append(resultBytes, []byte("# EOF")...)
 
-	// fmt.Println(resultBytes)
+	// fmt.Println(string(resultBytes))
 
 	return nil
 }
 
 func (helper GenHelper_WithoutUnix) ProcessTemplate(templateFilePath, outputDir string, data any) (bytes.Buffer, error) {
 	name := path.Base(templateFilePath)
-	temp := template.Must(template.New(name).Funcs(sprig.TxtFuncMap()).ParseFiles(templateFilePath))
+	temp := template.Must(template.New(name).ParseFiles(templateFilePath))
 
 	var buf bytes.Buffer
 	err := temp.Execute(&buf, helper)

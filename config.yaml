@@ -10,7 +10,7 @@ global_config:
 
 template_without_unix_Configs:
   - name: nvidia_gpu_exporter
-    template_value_path: gpu_node_50.json
+    template_value_path: gpu_node_2.json
   - name: DEVICE_B
 
 template_with_unix_configs:

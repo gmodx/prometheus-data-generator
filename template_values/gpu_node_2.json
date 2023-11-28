@@ -1,0 +1,130 @@
+[
+  {
+    "IP": "10.0.0.0",
+    "Index": 0,
+    "ID": "a8cc80fc-da90-4ed8-9621-a8a2513c6605",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 11000
+  },
+  {
+    "IP": "10.0.0.0",
+    "Index": 1,
+    "ID": "b8545b31-f123-4854-8294-c64efaa344a0",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 2000
+  },
+  {
+    "IP": "10.0.0.0",
+    "Index": 2,
+    "ID": "e142542d-f83c-4207-b0ad-f93ee5912b69",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 11000
+  },
+  {
+    "IP": "10.0.0.0",
+    "Index": 3,
+    "ID": "1c814c8b-38b2-40ca-8b1c-033c0300c143",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 8000
+  },
+  {
+    "IP": "10.0.0.0",
+    "Index": 4,
+    "ID": "45eba467-c1ca-4bbc-bb52-590a37e942cb",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 8000
+  },
+  {
+    "IP": "10.0.0.0",
+    "Index": 5,
+    "ID": "65079c6a-c3a4-4875-b8f0-b3a21b433acd",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 8000
+  },
+  {
+    "IP": "10.0.0.0",
+    "Index": 6,
+    "ID": "f981c973-fc19-4de1-8338-c09e9a20dcf8",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 4000
+  },
+  {
+    "IP": "10.0.0.0",
+    "Index": 7,
+    "ID": "64a90f49-12f8-416b-8981-e57cfb89117d",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 7000
+  },
+  {
+    "IP": "10.0.0.1",
+    "Index": 0,
+    "ID": "da199d62-1ddd-4955-a617-4681b50ec6a2",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 4000
+  },
+  {
+    "IP": "10.0.0.1",
+    "Index": 1,
+    "ID": "81323018-0143-4e5e-8a3e-408a15ef7ec9",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 11000
+  },
+  {
+    "IP": "10.0.0.1",
+    "Index": 2,
+    "ID": "190f6e32-e24e-4fd6-b48e-37133afc5721",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 7000
+  },
+  {
+    "IP": "10.0.0.1",
+    "Index": 3,
+    "ID": "da0acc6a-c97b-403d-a0eb-0cc7245f62b3",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 2000
+  },
+  {
+    "IP": "10.0.0.1",
+    "Index": 4,
+    "ID": "9f82b413-aa10-44b1-b49c-1b2d4763585c",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 2000
+  },
+  {
+    "IP": "10.0.0.1",
+    "Index": 5,
+    "ID": "2102b0d0-79df-48b3-bb5a-0d138481f27e",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 2000
+  },
+  {
+    "IP": "10.0.0.1",
+    "Index": 6,
+    "ID": "b1ecc6c6-8499-4b7f-a1dd-10d2e7bf56fa",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 2000
+  },
+  {
+    "IP": "10.0.0.1",
+    "Index": 7,
+    "ID": "e6f2550c-0cb6-40fd-b50d-f22f0cc5052c",
+    "Model": "tesla_t4",
+    "Vendor": "nvidia",
+    "Memory": 6000
+  }
+]
