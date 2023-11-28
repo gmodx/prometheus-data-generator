@@ -2,3 +2,5 @@
 __debug_bin*
 template_values_scripts/*.json
 prometheus-data-generator
+
+output/**

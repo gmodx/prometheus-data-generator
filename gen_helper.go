@@ -3,8 +3,10 @@ package main
 import (
 	"bytes"
 	"math/rand"
+	"os"
 	"path"
 	"text/template"
+	"time"
 )
 
 type GenHelper_WithoutUnix struct {
@@ -52,7 +54,7 @@ func BuildGenHelper_WithoutUnix(from, to int64, resolutionSeconds int) GenHelper
 	return helper
 }
 
-func (helper GenHelper_WithoutUnix) Exec(templateFilePath, outputDir string, data any) error {
+func (helper GenHelper_WithoutUnix) Exec(templateFilePath, outputDir string, data any, blockHours int) error {
 	helper.Data = data
 
 	buf, err := helper.ProcessTemplate(templateFilePath, outputDir, helper)
@@ -63,9 +65,9 @@ func (helper GenHelper_WithoutUnix) Exec(templateFilePath, outputDir string, dat
 	resultBytes := buf.Bytes()
 	resultBytes = append(resultBytes, []byte("# EOF")...)
 
-	// fmt.Println(string(resultBytes))
-
-	return nil
+	_ = os.MkdirAll(outputDir, os.ModePerm)
+	err = Backfill(5000, resultBytes, outputDir, true, false, time.Duration(blockHours)*time.Hour)
+	return err
 }
 
 func (helper GenHelper_WithoutUnix) ProcessTemplate(templateFilePath, outputDir string, data any) (bytes.Buffer, error) {

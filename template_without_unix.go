@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"github.com/gmodx/prometheus-data-generator/log"
@@ -30,9 +31,12 @@ func GenerateSamples_WithoutUnix(ctx context.Context, templateName, templateFile
 
 			// logic
 			{
-				log.Green("=== %v, loop, %v -> %v, step: %vs ===", templateName, currentStart.Format(time.RFC3339), currentEnd.Format(time.RFC3339), resolutionSeconds)
+				log.Green("=== %v -> %v ===", currentStart.Format(time.RFC3339), currentEnd.Format(time.RFC3339))
+
 				helper := BuildGenHelper_WithoutUnix(currentStart.Unix(), currentEnd.Unix(), resolutionSeconds)
-				err := helper.Exec(templateFilePath, outputPath, tVals)
+
+				outputCurrentDir := fmt.Sprintf("%v/%v_%v_%v_%v/%v_%v", outputPath, templateName, resolutionSeconds, startTime.Format(time.RFC3339), endTime.Format(time.RFC3339), currentStart.Format(time.RFC3339), endTime.Format(time.RFC3339))
+				err := helper.Exec(templateFilePath, outputCurrentDir, tVals, blockHours)
 				if err != nil {
 					log.Warn(err.Error())
 					return err
