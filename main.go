@@ -72,7 +72,8 @@ func RootCmd() *cobra.Command {
 			for _, templateConfig := range cfg.TemplateWithoutUnixConfigs {
 				tplPath := path.Join(cfg.TemplateDir, templateConfig.Name+".template")
 				tplValuePath := path.Join(cfg.TemplateValueDir, templateConfig.TemplateValuePath)
-				GenerateSamples_WithoutUnix(ctx, templateConfig.Name, tplPath, tplValuePath, cfg.OutputDir, templateConfig.Days, templateConfig.ResolutionSeconds, templateConfig.EndTime(), blockHours)
+
+				GenerateSamples_WithoutUnix(ctx, templateConfig.Name, tplPath, tplValuePath, cfg.OutputDir, templateConfig.ResolutionSeconds, templateConfig.StartTime(), templateConfig.EndTime(), blockHours)
 			}
 		},
 	}

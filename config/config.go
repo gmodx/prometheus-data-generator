@@ -38,3 +38,7 @@ type TemplateWithUnixConfig struct {
 func (c TemplateWithoutUnixConfig) EndTime() time.Time {
 	return time.Unix(c.EndTimeUnix, 0)
 }
+
+func (c TemplateWithoutUnixConfig) StartTime() time.Time {
+	return c.EndTime().AddDate(0, 0, -c.Days)
+}

@@ -1,4 +1,4 @@
-{{ range $t := .Times }}{{ range $.Helper.Extra -}}
+{{ range $t := .Timestamps }}{{ range $.Data -}}
 DCGM_FI_DEV_FB_FREE{instance="{{.IP}}:9400",gpu="{{.Index}}",UUID="{{.ID}}",device="{{.Vendor}}",modelName="{{.Model}}",Hostname="{{.IP}}"} {{ $.RandomInt 501 10000 }} {{$t}}
 DCGM_FI_DEV_FB_USED{instance="{{.IP}}:9400",gpu="{{.Index}}",UUID="{{.ID}}",device="{{.Vendor}}",modelName="{{.Model}}",Hostname="{{.IP}}"} {{ $.RandomInt 1 500 }} {{$t}}
 DCGM_FI_DEV_GPU_UTIL{instance="{{.IP}}:9400",gpu="{{.Index}}",UUID="{{.ID}}",device="{{.Vendor}}",modelName="{{.Model}}",Hostname="{{.IP}}"} {{ $.RandomInt 1 100 }} {{$t}}
