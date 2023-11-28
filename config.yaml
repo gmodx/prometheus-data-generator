@@ -1,17 +1,17 @@
-template_dir: ./template
-output: ./output
+template_dir: ./templates
+output_dir: ./output
+template_value_dir: ./template_values
 
-global:
-  template_values_path: ./config/template_values.json
+global_config:
+  template_value_path: ./template_values_without_unix.json
   days: 30
   resolution_seconds: 15
   endtime_unix: 1698048047
 
-template_without_unix:
-  ## device: 
-  - name: DEVICE_A
+template_without_unix_Configs:
+  - name: nvidia_gpu_exporter
+    template_value_path: gpu_node_50.json
   - name: DEVICE_B
 
-template_with_unix:
+template_with_unix_configs:
   - name: VDEVICE_A
-

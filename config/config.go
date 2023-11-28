@@ -1,29 +1,40 @@
 package config
 
-type Config struct {
-	TemplateDir string `json:"template_dir"`
-	Output      string `json:"output"`
+import "time"
 
-	TemplateWithoutUnixConfigs []TemplateWithoutUnixConfig `json:"template_without_unix_configs"`
-	TemplateWithUnixConfigs    []TemplateWithUnixConfig    `json:"template_with_unix_configs"`
+type Config struct {
+	TemplateDir      string `mapstructure:"template_dir"`
+	TemplateValueDir string `mapstructure:"template_value_dir"`
+	OutputDir        string `mapstructure:"output_dir"`
+
+	GlobalConfig GlobalConfig `mapstructure:"global_config"`
+
+	TemplateWithoutUnixConfigs []TemplateWithoutUnixConfig `mapstructure:"template_without_unix_configs"`
+	TemplateWithUnixConfigs    []TemplateWithUnixConfig    `mapstructure:"template_with_unix_configs"`
 }
 
 type GlobalConfig struct {
-	TemplateValuesPath string `json:"template_values_path"`
-	Days               int    `json:"days"`
-	ResolutionSeconds  int    `json:"resolution_seconds"`
-	EndtimeUnix        int    `json:"endtime_unix"`
+	TemplateValuePath string `mapstructure:"template_value_path"`
+	Days              int    `mapstructure:"days"`
+	ResolutionSeconds int    `mapstructure:"resolution_seconds"`
+	EndTimeUnix       int64  `mapstructure:"endtime_unix"`
 }
 
 type TemplateWithoutUnixConfig struct {
-	Name               string `json:"name"`
-	TemplateValuesPath string `json:"template_values_path"`
-	Days               int    `json:"days"`
-	ResolutionSeconds  int    `json:"resolution_seconds"`
-	EndtimeUnix        int    `json:"endtime_unix"`
+	Name string `mapstructure:"name"`
+
+	TemplateValuePath string `mapstructure:"template_value_path"`
+	Days              int    `mapstructure:"days"`
+	ResolutionSeconds int    `mapstructure:"resolution_seconds"`
+	EndTimeUnix       int64  `mapstructure:"endtime_unix"`
 }
 
 type TemplateWithUnixConfig struct {
-	Name               string `json:"name"`
-	TemplateValuesPath string `json:"template_values_path"`
+	Name string `mapstructure:"name"`
+
+	TemplateValuesPath string `mapstructure:"template_values_path"`
+}
+
+func (c TemplateWithoutUnixConfig) EndTime() time.Time {
+	return time.Unix(c.EndTimeUnix, 0)
 }
