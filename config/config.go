@@ -32,7 +32,7 @@ type TemplateWithoutUnixConfig struct {
 type TemplateWithUnixConfig struct {
 	Name string `mapstructure:"name"`
 
-	TemplateValuesPath string `mapstructure:"template_values_path"`
+	TemplateValuePath string `mapstructure:"template_value_path"`
 }
 
 func (c TemplateWithoutUnixConfig) EndTime() time.Time {

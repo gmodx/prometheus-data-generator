@@ -31,7 +31,8 @@ func GenerateSamples_WithoutUnix(ctx context.Context, templateName, templateFile
 
 			// logic
 			{
-				log.Green("progress: %v -> %v", currentStart.Format(time.RFC3339), currentEnd.Format(time.RFC3339))
+				progress := int(100 * currentStart.Sub(startTime).Seconds() / endTime.Sub(startTime).Seconds())
+				log.Green("progress: %v%%, %v -> %v", progress, currentStart.Format(time.RFC3339), currentEnd.Format(time.RFC3339))
 
 				helper := BuildGenHelper_WithoutUnix(currentStart.Unix(), currentEnd.Unix(), resolutionSeconds)
 

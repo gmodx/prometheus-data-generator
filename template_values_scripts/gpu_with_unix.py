@@ -3,7 +3,7 @@ import uuid
 import random
 from datetime import datetime, timedelta
 
-node_count = 1
+node_count = 300
 device_model = "tesla_t4"
 vendor = "nvidia"
 device_count_per_node = 8

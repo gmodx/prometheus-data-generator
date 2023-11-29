@@ -7,6 +7,8 @@ import (
 	"path"
 	"text/template"
 	"time"
+
+	"github.com/gmodx/prometheus-data-generator/log"
 )
 
 type GenHelper_WithoutUnix struct {
@@ -17,8 +19,7 @@ type GenHelper_WithoutUnix struct {
 	ResolutionSeconds int
 
 	Timestamps []int64
-
-	Data any
+	Items      []any
 }
 
 type GenBaseHelper struct {
@@ -54,10 +55,11 @@ func BuildGenHelper_WithoutUnix(from, to int64, resolutionSeconds int) GenHelper
 	return helper
 }
 
-func (helper GenHelper_WithoutUnix) Exec(templateFilePath, outputDir string, data any, blockHours int) error {
-	helper.Data = data
+func (helper GenHelper_WithoutUnix) Exec(templateFilePath, outputDir string, items []any, blockHours int) error {
+	helper.Items = items
 
-	buf, err := helper.ProcessTemplate(templateFilePath, outputDir, helper)
+	log.Green("process template...")
+	buf, err := ProcessTemplate(templateFilePath, outputDir, helper)
 	if err != nil {
 		return err
 	}
@@ -65,16 +67,49 @@ func (helper GenHelper_WithoutUnix) Exec(templateFilePath, outputDir string, dat
 	resultBytes := buf.Bytes()
 	resultBytes = append(resultBytes, []byte("# EOF")...)
 
+	log.Green("create blocks...")
 	_ = os.MkdirAll(outputDir, os.ModePerm)
 	err = Backfill(5000, resultBytes, outputDir, true, false, time.Duration(blockHours)*time.Hour)
 	return err
 }
 
-func (helper GenHelper_WithoutUnix) ProcessTemplate(templateFilePath, outputDir string, data any) (bytes.Buffer, error) {
+func (helper GenHelper_WithUnix) Exec(templateFilePath, outputDir string, items []any, blockHours int) error {
+	helper.Items = items
+
+	log.Green("process template...")
+	buf, err := ProcessTemplate(templateFilePath, outputDir, helper)
+	if err != nil {
+		return err
+	}
+
+	resultBytes := buf.Bytes()
+	resultBytes = append(resultBytes, []byte("# EOF")...)
+
+	log.Green("create blocks...")
+	_ = os.MkdirAll(outputDir, os.ModePerm)
+	err = Backfill(5000, resultBytes, outputDir, true, false, time.Duration(blockHours)*time.Hour)
+	return err
+}
+
+func ProcessTemplate(templateFilePath, outputDir string, tplValue any) (bytes.Buffer, error) {
 	name := path.Base(templateFilePath)
 	temp := template.Must(template.New(name).ParseFiles(templateFilePath))
 
 	var buf bytes.Buffer
-	err := temp.Execute(&buf, helper)
+	err := temp.Execute(&buf, tplValue)
 	return buf, err
+}
+
+type GenHelper_WithUnix struct {
+	GenBaseHelper
+
+	Items []any
+}
+
+func BuildGenHelper_WithUnix() GenHelper_WithUnix {
+	helper := GenHelper_WithUnix{
+		GenBaseHelper: GenBaseHelper{},
+	}
+
+	return helper
 }

@@ -9,9 +9,10 @@ global_config:
   endtime_unix: 1698048047
 
 template_without_unix_Configs:
-  - name: nvidia_gpu_exporter
-    template_value_path: gpu_node_2.json
-  - name: DEVICE_B
+  # - name: nvidia_gpu_exporter
+  #   template_value_path: gpu_node_2.json
+  # - name: DEVICE_B
 
 template_with_unix_configs:
-  - name: VDEVICE_A
+  - name: nvidia_gpu_exporter_with_unix
+    template_value_path: samples_gpu_node_1.json

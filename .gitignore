@@ -4,3 +4,6 @@ template_values_scripts/*.json
 prometheus-data-generator
 
 output/**
+template_values/samples_gpu_node_1.json
+template_values/samples_gpu_node_50.json
+template_values/samples_gpu_node_300.json

@@ -75,6 +75,13 @@ func RootCmd() *cobra.Command {
 
 				GenerateSamples_WithoutUnix(ctx, templateConfig.Name, tplPath, tplValuePath, cfg.OutputDir, templateConfig.ResolutionSeconds, templateConfig.StartTime(), templateConfig.EndTime(), blockHours)
 			}
+
+			for _, templateConfig := range cfg.TemplateWithUnixConfigs {
+				tplPath := path.Join(cfg.TemplateDir, templateConfig.Name+".template")
+				tplValuePath := path.Join(cfg.TemplateValueDir, templateConfig.TemplateValuePath)
+
+				GenerateSamples_WithUnix(ctx, templateConfig.Name, tplPath, tplValuePath, cfg.OutputDir, blockHours)
+			}
 		},
 	}
 
