@@ -18,8 +18,7 @@ func GenerateSamples_WithoutUnix(ctx context.Context, templateName, templateFile
 	}
 
 	{
-		// loop by 4 hours
-		stepHours := 4.0
+		stepHours := 2.0
 		currentStart := startTime
 		for {
 			currentDayZero := time.Date(currentStart.Year(), currentStart.Month(), currentStart.Day(), 0, 0, 0, 0, currentStart.Location())
@@ -28,7 +27,7 @@ func GenerateSamples_WithoutUnix(ctx context.Context, templateName, templateFile
 			if currentEnd.After(endTime) {
 				currentEnd = endTime
 			}
-			if currentStart.After(currentEnd) {
+			if currentEnd.Sub(currentStart).Seconds() <= 0 {
 				break
 			}
 
