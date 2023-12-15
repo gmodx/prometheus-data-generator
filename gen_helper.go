@@ -48,7 +48,7 @@ func BuildGenHelper_WithoutUnix(from, to int64, resolutionSeconds int) GenHelper
 	stepN := int64(resolutionSeconds)
 	num := int(((to - from) / stepN) + 1)
 	helper.Timestamps = make([]int64, 0, num)
-	for t := from; t <= to; t += stepN {
+	for t := from; t < to; t += stepN {
 		helper.Timestamps = append(helper.Timestamps, t)
 	}
 
